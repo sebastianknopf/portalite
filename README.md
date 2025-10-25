@@ -5,7 +5,7 @@ PortaLite is a extremly light-weight, desktop and mobile ready, index portal pag
 Simply clone this repository to your document root destination server with the following command:
 
 ```bash
-git clone https://github.com/sebastianknopf/Portalite.git
+git clone https://github.com/sebastianknopf/portalite.git
 ```
 
 Then, copy `config.default.php` to `config.php` and modify the configuration to your needs.
