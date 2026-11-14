@@ -99,5 +99,19 @@ return [
                 ],
             ],
         ],
+        'low' => [
+            'links' => [
+                [
+                    'title' => 'Low link #1',
+                    'url' => 'https://example.com',
+                    'target' => '_self',
+                ],
+                [
+                    'title' => 'Low link #2',
+                    'url' => 'https://example.org',
+                    'target' => '_self',
+                ],
+            ],
+        ],
     ],
 ];

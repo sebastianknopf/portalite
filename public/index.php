@@ -10,6 +10,8 @@ foreach (['left', 'middle', 'right'] as $position) {
         $footerGroups[$position] = $footer[$position];
     }
 }
+$footerLow = array_key_exists('low', $footer) ? $footer['low'] : null;
+$footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,6 +92,22 @@ foreach (['left', 'middle', 'right'] as $position) {
       text-decoration: none;
     }
 
+    .footer-low {
+      padding: 8px 16px;
+    }
+
+    .footer-low-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+    }
+
+    .footer-low a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     @media (max-width: 600px) {
       .header-content {
         flex-direction: column;
@@ -109,10 +127,27 @@ foreach (['left', 'middle', 'right'] as $position) {
       .footer-group {
         padding: 8px 16px;
       }
+
+      body.has-footer-low {
+        padding-bottom: 80px;
+      }
+
+      .footer-low {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        left: 16px;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .footer-low-content {
+        justify-content: center;
+      }
     }
     </style>
   </head>
-  <body class="w3-secondary">
+  <body class="w3-secondary<?= count($footerLowLinks) > 0 ? ' has-footer-low' : '' ?>">
     <header class="w3-padding-16 w3-primary">
       <div class="w3-content header-content">
         <?php if ($logo !== null): ?>
@@ -210,6 +245,15 @@ foreach (['left', 'middle', 'right'] as $position) {
         <?php endforeach; ?>
       </div>
     </footer>
+    <?php endif; ?>
+    <?php if (count($footerLowLinks) > 0): ?>
+    <div class="footer-low w3-secondary">
+      <div class="w3-content footer-low-content">
+        <?php foreach ($footerLowLinks as $link): ?>
+        <a href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target', '_self') ?>"><?= pl_get($link, 'title') ?></a>
+        <?php endforeach; ?>
+      </div>
+    </div>
     <?php endif; ?>
   </body>
 </html>
