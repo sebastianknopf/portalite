@@ -18,7 +18,7 @@ function pl_get(array $array, string $key, mixed $default = null): mixed
 
 function pl_config(string $key, mixed $default = null): mixed
 {
-    $config = require './config.php';
+    $config = require __DIR__ . './config.php';
 
     return pl_get($config, $key, $default);    
 }
