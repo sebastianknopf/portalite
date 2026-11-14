@@ -44,15 +44,15 @@ $logoHeight = $logo === null ? null : pl_get($logo, 'height');
   </head>
   <body class="w3-secondary">
     <header class="w3-padding-16 w3-primary">
-      <div class="w3-content w3-bar">
+      <div class="w3-content w3-cell-row">
         <?php if ($logo !== null): ?>
-				<div class="w3-bar-item">
+				<div class="w3-cell w3-cell-middle w3-padding">
 					<img src="<?= pl_get($logo, 'url') ?>"
           <?php if ($logoWidth !== null): ?> width="<?= $logoWidth ?>"<?php endif; ?>
           <?php if ($logoHeight !== null): ?> height="<?= $logoHeight ?>"<?php endif; ?> />
 				</div>
         <?php endif; ?>
-				<div class="w3-bar-item">
+				<div class="w3-cell w3-cell-middle w3-padding">
 					<h1><?= pl_config('index.title', 'PortaLite') ?></h1>
 				</div>
 			</div>
