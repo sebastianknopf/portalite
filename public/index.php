@@ -1,4 +1,4 @@
-<?php require 'portalite.php'; ?>
+<?php require '../portalite.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
