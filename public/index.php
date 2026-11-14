@@ -137,7 +137,7 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
 
     .attribution-link a {
       color: inherit;
-      text-decoration: none;
+      text-decoration: underline;
     }
 
     @media (max-width: 600px) {
