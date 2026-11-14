@@ -87,6 +87,7 @@ foreach (['left', 'middle', 'right'] as $position) {
 
     .footer-links a {
       color: inherit;
+      text-decoration: none;
     }
 
     @media (max-width: 600px) {
@@ -103,6 +104,10 @@ foreach (['left', 'middle', 'right'] as $position) {
       .footer-group-middle,
       .footer-group-right {
         grid-column: auto;
+      }
+
+      .footer-group {
+        padding: 8px 16px;
       }
     }
     </style>
@@ -189,10 +194,10 @@ foreach (['left', 'middle', 'right'] as $position) {
       });
     </script>
     <?php if (count($footerGroups) > 0): ?>
-    <footer class="w3-primary w3-padding-16">
+    <footer class="w3-secondary w3-padding-16">
       <div class="w3-content footer-content">
         <?php foreach ($footerGroups as $position => $group): ?>
-        <section class="footer-group-<?= $position ?>">
+        <section class="footer-group footer-group-<?= $position ?>">
           <?php if (pl_get($group, 'title') !== null): ?>
           <h3 class="footer-title"><?= pl_get($group, 'title') ?></h3>
           <?php endif; ?>

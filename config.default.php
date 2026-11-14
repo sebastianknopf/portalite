@@ -70,10 +70,12 @@ return [
                 [
                     'title' => 'Example link #1',
                     'url' => 'https://example.com',
+                    'target' => '_self',
                 ],
                 [
                     'title' => 'Example link #2',
                     'url' => 'https://example.org',
+                    'target' => '_self',
                 ],
             ],
         ],
@@ -83,6 +85,7 @@ return [
                 [
                     'title' => 'Example link #3',
                     'url' => 'https://example.com',
+                    'target' => '_self',
                 ],
             ],
         ],
@@ -92,6 +95,7 @@ return [
                 [
                     'title' => 'Example link #4',
                     'url' => 'https://example.org',
+                    'target' => '_self',
                 ],
             ],
         ],
