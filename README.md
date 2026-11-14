@@ -15,7 +15,7 @@ Set the Apache's document root to `/path/to/your/repo/public`. Note the trailing
 - Basic settings like title, subtitle, description, robots-meta and color scheme can be changed in the `index` key at toplevel.
 - The whole content is divided into **Groups**. Each group then contains **Entries** and each entry contains one or more **Links**. 
 - On groups, title and description are optional. On entries, the title is mandatory, the description is optional. On a link, you have to define the title and the url, target (default: `_self`) is optional.
-- The footer can have optional `left`, `middle`, and `right` groups, each with a title and links. An optional `low` group contains only links; it appears inline on larger screens and floats above the bottom edge on mobile.
+- The footer can have optional `left`, `middle`, and `right` groups, each with a title and links. An optional `low` group contains only links and appears centered inline below the regular groups on all screen sizes.
 
 With a correctly configured `Apache` or `nginx`, you should see this view with basic configuration:
 

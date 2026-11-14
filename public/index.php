@@ -129,23 +129,10 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
         padding: 8px 16px;
       }
 
-      body.has-footer-low {
-        padding-bottom: 80px;
-      }
-
-      .footer-low {
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        left: 16px;
-        z-index: 100;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      }
-
     }
     </style>
   </head>
-  <body class="w3-secondary<?= count($footerLowLinks) > 0 ? ' has-footer-low' : '' ?>">
+  <body class="w3-secondary">
     <header class="w3-padding-16 w3-primary">
       <div class="w3-content header-content">
         <?php if ($logo !== null): ?>
@@ -226,32 +213,36 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
           });
       });
     </script>
-    <?php if (count($footerGroups) > 0): ?>
+    <?php if (count($footerGroups) > 0 || count($footerLowLinks) > 0): ?>
     <footer class="w3-secondary w3-padding-16">
-      <div class="w3-content footer-content">
-        <?php foreach ($footerGroups as $position => $group): ?>
-        <section class="footer-group footer-group-<?= $position ?>">
-          <?php if (pl_get($group, 'title') !== null): ?>
-          <h3 class="footer-title"><?= pl_get($group, 'title') ?></h3>
-          <?php endif; ?>
-          <ul class="footer-links">
-            <?php foreach (pl_get($group, 'links', []) as $link): ?>
-            <li><a href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target', '_self') ?>"><?= pl_get($link, 'title') ?></a></li>
+      <div class="w3-content">
+        <?php if (count($footerGroups) > 0): ?>
+        <div class="footer-content">
+          <?php foreach ($footerGroups as $position => $group): ?>
+          <section class="footer-group footer-group-<?= $position ?>">
+            <?php if (pl_get($group, 'title') !== null): ?>
+            <h3 class="footer-title"><?= pl_get($group, 'title') ?></h3>
+            <?php endif; ?>
+            <ul class="footer-links">
+              <?php foreach (pl_get($group, 'links', []) as $link): ?>
+              <li><a href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target', '_self') ?>"><?= pl_get($link, 'title') ?></a></li>
+              <?php endforeach; ?>
+            </ul>
+          </section>
+          <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+        <?php if (count($footerLowLinks) > 0): ?>
+        <div class="footer-low">
+          <div class="footer-low-content">
+            <?php foreach ($footerLowLinks as $link): ?>
+            <a href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target', '_self') ?>"><?= pl_get($link, 'title') ?></a>
             <?php endforeach; ?>
-          </ul>
-        </section>
-        <?php endforeach; ?>
+          </div>
+        </div>
+        <?php endif; ?>
       </div>
     </footer>
-    <?php endif; ?>
-    <?php if (count($footerLowLinks) > 0): ?>
-    <div class="footer-low w3-secondary">
-      <div class="w3-content footer-low-content">
-        <?php foreach ($footerLowLinks as $link): ?>
-        <a href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target', '_self') ?>"><?= pl_get($link, 'title') ?></a>
-        <?php endforeach; ?>
-      </div>
-    </div>
     <?php endif; ?>
   </body>
 </html>
