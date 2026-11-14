@@ -3,6 +3,9 @@ require '../portalite.php';
 $logo = pl_config('index.logo', null);
 $logoWidth = $logo === null ? null : pl_get($logo, 'width');
 $logoHeight = $logo === null ? null : pl_get($logo, 'height');
+$attributions = pl_config('index.attributions', []);
+$attributionTitle = is_array($attributions) ? pl_get($attributions, 'title') : null;
+$attributionEntries = is_array($attributions) ? pl_get($attributions, 'entries', []) : [];
 $footer = pl_config('footer', []);
 $footerGroups = [];
 foreach (['left', 'middle', 'right'] as $position) {
@@ -109,6 +112,34 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
       text-decoration: none;
     }
 
+    .attributions {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .attributions-title {
+      margin-bottom: 20px;
+    }
+
+    .attribution-entry {
+      margin: 0 auto 20px;
+      max-width: 720px;
+      padding: 0 8px;
+    }
+
+    .attribution-entry p {
+      margin: 6px 0;
+    }
+
+    .attribution-link {
+      margin-top: 8px;
+    }
+
+    .attribution-link a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     @media (max-width: 600px) {
       .header-content {
         flex-direction: column;
@@ -191,6 +222,23 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
           <?php endif; ?>
         </div>
         <?php endforeach; ?>
+      <?php endif; ?>
+      <?php if (count($attributionEntries) > 0): ?>
+      <section class="attributions">
+        <?php if ($attributionTitle !== null): ?>
+        <h3 class="attributions-title"><?= $attributionTitle ?></h3>
+        <?php endif; ?>
+        <?php foreach ($attributionEntries as $attribution): ?>
+        <div class="attribution-entry">
+          <h4 class="w3-emphasis"><?= pl_get($attribution, 'provider') ?></h4>
+          <p><?= pl_get($attribution, 'description') ?></p>
+          <p><b><?= pl_get($attribution, 'license') ?></b></p>
+          <?php if (pl_get($attribution, 'link', null) !== null): ?>
+          <p class="attribution-link"><a href="<?= pl_get($attribution, 'link.url') ?>" target="<?= pl_get($attribution, 'link.target', '_self') ?>"><?= pl_get($attribution, 'link.title') ?></a></p>
+          <?php endif; ?>
+        </div>
+        <?php endforeach; ?>
+      </section>
       <?php endif; ?>
     </main>
     <script>

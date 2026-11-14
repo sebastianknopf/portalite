@@ -62,6 +62,31 @@ return [
                 ],
             ]
         ],
+        'attributions' => [
+            'title' => 'Attributions',
+            'entries' => [
+                [
+                    'provider' => 'Provider #1',
+                    'description' => 'This is a stupid attribution example for some media or library.',
+                    'license' => 'MIT License',
+                    'link' => [
+                        'title' => 'View source',
+                        'url' => 'https://example.com',
+                        'target' => '_blank',
+                    ],
+                ],
+                [
+                    'provider' => 'Provider #2',
+                    'description' => 'Another attribution sample entry to show block rendering.',
+                    'license' => 'Apache-2.0',
+                    'link' => [
+                        'title' => 'Project homepage',
+                        'url' => 'https://example.org',
+                        'target' => '_self',
+                    ],
+                ],
+            ],
+        ],
     ],
     'footer' => [
         'left' => [
