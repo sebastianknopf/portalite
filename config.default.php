@@ -63,4 +63,37 @@ return [
             ]
         ],
     ],
+    'footer' => [
+        'left' => [
+            'title' => 'Footer group #1',
+            'links' => [
+                [
+                    'title' => 'Example link #1',
+                    'url' => 'https://example.com',
+                ],
+                [
+                    'title' => 'Example link #2',
+                    'url' => 'https://example.org',
+                ],
+            ],
+        ],
+        'middle' => [
+            'title' => 'Footer group #2',
+            'links' => [
+                [
+                    'title' => 'Example link #3',
+                    'url' => 'https://example.com',
+                ],
+            ],
+        ],
+        'right' => [
+            'title' => 'Footer group #3',
+            'links' => [
+                [
+                    'title' => 'Example link #4',
+                    'url' => 'https://example.org',
+                ],
+            ],
+        ],
+    ],
 ];

@@ -3,6 +3,13 @@ require '../portalite.php';
 $logo = pl_config('index.logo', null);
 $logoWidth = $logo === null ? null : pl_get($logo, 'width');
 $logoHeight = $logo === null ? null : pl_get($logo, 'height');
+$footer = pl_config('footer', []);
+$footerGroups = [];
+foreach (['left', 'middle', 'right'] as $position) {
+    if (array_key_exists($position, $footer)) {
+        $footerGroups[$position] = $footer[$position];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,10 +53,56 @@ $logoHeight = $logo === null ? null : pl_get($logo, 'height');
       align-items: center;
     }
 
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .footer-group-left {
+      grid-column: 1;
+    }
+
+    .footer-group-middle {
+      grid-column: 2;
+    }
+
+    .footer-group-right {
+      grid-column: 3;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-title {
+      margin: 0 0 8px;
+    }
+
+    .footer-links li + li {
+      margin-top: 8px;
+    }
+
+    .footer-links a {
+      color: inherit;
+    }
+
     @media (max-width: 600px) {
       .header-content {
         flex-direction: column;
         text-align: center;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-group-left,
+      .footer-group-middle,
+      .footer-group-right {
+        grid-column: auto;
       }
     }
     </style>
@@ -135,5 +188,23 @@ $logoHeight = $logo === null ? null : pl_get($logo, 'height');
           });
       });
     </script>
+    <?php if (count($footerGroups) > 0): ?>
+    <footer class="w3-primary w3-padding-16">
+      <div class="w3-content footer-content">
+        <?php foreach ($footerGroups as $position => $group): ?>
+        <section class="footer-group-<?= $position ?>">
+          <?php if (pl_get($group, 'title') !== null): ?>
+          <h3 class="footer-title"><?= pl_get($group, 'title') ?></h3>
+          <?php endif; ?>
+          <ul class="footer-links">
+            <?php foreach (pl_get($group, 'links', []) as $link): ?>
+            <li><a href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target', '_self') ?>"><?= pl_get($link, 'title') ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </section>
+        <?php endforeach; ?>
+      </div>
+    </footer>
+    <?php endif; ?>
   </body>
 </html>
