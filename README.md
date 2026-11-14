@@ -13,7 +13,17 @@ Then, copy `config.default.php` to `config.php` and modify the configuration to 
 Set the Apache's document root to `/path/to/your/repo/public`. Note the trailing `/public` which makes the other non-public files located in another directory, away from the public directory.
 
 - Basic settings like title, subtitle, description, robots-meta and color scheme can be changed in the `index` key at toplevel.
-- Override the logo filename with your own, if you want or disable the entire logo.
+- Configure the logo as an array with a required `url` and optional `width` and `height` values in pixels. For example:
+
+  ```php
+  'logo' => [
+      'url' => '/img/logo.svg',
+      'width' => 65,
+      'height' => 65,
+  ],
+  ```
+
+  Omit either dimension to leave that HTML attribute unset, or set `logo` to `null` to disable the logo.
 - The whole content is divided into **Groups**. Each group then contains **Entries** and each entry contains one or more **Links**. 
 - On groups, title and description are optional. On entries, the title is mandatory, the description is optional. On a link, you have to define the title and the url, target (default: `_self`) is optional.
 

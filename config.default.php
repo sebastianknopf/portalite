@@ -5,7 +5,11 @@ return [
         'title' => 'PortaLite',
         'subtitle' => 'Subtitle',
         'description' => 'PortaLite is a extremly light-weight, desktop and mobile ready, index portal page with dynamic configuration options using one single PHP file. No installation required, no external dependencies. Try it out!',
-        'logo' => '/img/logo.svg',
+        'logo' => [
+            'url' => '/img/logo.svg',
+            'width' => 65,
+            'height' => 65,
+        ],
         'colors' => [
             'background' => [
                 'primary' => '#008c99',

@@ -1,4 +1,9 @@
-<?php require '../portalite.php'; ?>
+<?php
+require '../portalite.php';
+$logo = pl_config('index.logo', null);
+$logoWidth = $logo === null ? null : pl_get($logo, 'width');
+$logoHeight = $logo === null ? null : pl_get($logo, 'height');
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,9 +45,11 @@
   <body class="w3-secondary">
     <header class="w3-padding-16 w3-primary">
       <div class="w3-content w3-bar">
-        <?php if (pl_config('index.logo', null) !== null): ?>
+        <?php if ($logo !== null): ?>
 				<div class="w3-bar-item">
-					<img src="<?= pl_config('index.logo') ?>" width="65" height="65" />
+					<img src="<?= pl_get($logo, 'url') ?>"
+          <?php if ($logoWidth !== null): ?> width="<?= $logoWidth ?>"<?php endif; ?>
+          <?php if ($logoHeight !== null): ?> height="<?= $logoHeight ?>"<?php endif; ?> />
 				</div>
         <?php endif; ?>
 				<div class="w3-bar-item">
