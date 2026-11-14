@@ -96,5 +96,25 @@
         <?php endforeach; ?>
       <?php endif; ?>
     </main>
+    <script>
+      document.querySelectorAll('a.w3-button[href]').forEach(function (button) {
+        var controller = new AbortController();
+
+        fetch(button.href, { cache: 'no-store', signal: controller.signal })
+          .then(function (response) {
+            if (response.status !== 200) {
+              button.classList.add('w3-disabled');
+              button.setAttribute('aria-disabled', 'true');
+              button.tabIndex = -1;
+              button.removeAttribute('href');
+            }
+
+            controller.abort();
+          })
+          .catch(function (error) {
+            console.warn('Unable to check link "' + button.href + '":', error);
+          });
+      });
+    </script>
   </body>
 </html>
