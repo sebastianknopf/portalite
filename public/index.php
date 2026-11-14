@@ -41,21 +41,14 @@ $logoHeight = $logo === null ? null : pl_get($logo, 'height');
       color: <?= pl_config('index.colors.text.textOnAccent', '#ffffff') ?>;
     }
 
+    .header-content {
+      display: flex;
+      align-items: center;
+    }
+
     @media (max-width: 600px) {
       .header-content {
-        display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .header-content::before,
-      .header-content::after {
-        display: none;
-      }
-
-      .header-content .w3-cell {
-        display: block;
         text-align: center;
       }
     }
@@ -63,15 +56,15 @@ $logoHeight = $logo === null ? null : pl_get($logo, 'height');
   </head>
   <body class="w3-secondary">
     <header class="w3-padding-16 w3-primary">
-      <div class="w3-content w3-cell-row header-content">
+      <div class="w3-content header-content">
         <?php if ($logo !== null): ?>
-				<div class="w3-cell w3-cell-middle w3-padding">
+				<div class="w3-padding">
 					<img src="<?= pl_get($logo, 'url') ?>"
           <?php if ($logoWidth !== null): ?> width="<?= $logoWidth ?>"<?php endif; ?>
           <?php if ($logoHeight !== null): ?> height="<?= $logoHeight ?>"<?php endif; ?> />
 				</div>
         <?php endif; ?>
-				<div class="w3-cell w3-cell-middle w3-padding">
+				<div class="w3-padding">
 					<h1><?= pl_config('index.title', 'PortaLite') ?></h1>
 				</div>
 			</div>
