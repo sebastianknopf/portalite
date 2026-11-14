@@ -40,11 +40,30 @@ $logoHeight = $logo === null ? null : pl_get($logo, 'height');
       background: <?= pl_config('index.colors.background.accent', '#99cc04') ?>;
       color: <?= pl_config('index.colors.text.textOnAccent', '#ffffff') ?>;
     }
+
+    @media (max-width: 600px) {
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .header-content::before,
+      .header-content::after {
+        display: none;
+      }
+
+      .header-content .w3-cell {
+        display: block;
+        text-align: center;
+      }
+    }
     </style>
   </head>
   <body class="w3-secondary">
     <header class="w3-padding-16 w3-primary">
-      <div class="w3-content w3-cell-row">
+      <div class="w3-content w3-cell-row header-content">
         <?php if ($logo !== null): ?>
 				<div class="w3-cell w3-cell-middle w3-padding">
 					<img src="<?= pl_get($logo, 'url') ?>"
