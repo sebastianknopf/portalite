@@ -85,7 +85,7 @@
               <div class="w3-quarter">
                 <div class="w3-mobile w3-right">
                 <?php foreach (pl_get($entry, 'links', []) as $link): ?>
-                  <a class="w3-button w3-accent w3-round-large w3-mobile" style="margin: 4px 0px;" href="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target') ?>"><b><?= pl_get($link, 'title') ?></b></a>
+                  <a class="w3-button w3-accent w3-round-large w3-mobile w3-disabled" style="margin: 4px 0px;" data-url="<?= pl_get($link, 'url') ?>" target="<?= pl_get($link, 'target') ?>" aria-disabled="true" tabindex="-1"><b><?= pl_get($link, 'title') ?></b></a>
                 <?php endforeach; ?>
                 </div>
               </div>
@@ -97,22 +97,22 @@
       <?php endif; ?>
     </main>
     <script>
-      document.querySelectorAll('a.w3-button[href]').forEach(function (button) {
+      document.querySelectorAll('a.w3-button[data-url]').forEach(function (button) {
         var controller = new AbortController();
 
-        fetch(button.href, { cache: 'no-store', signal: controller.signal })
+        fetch(button.dataset.url, { cache: 'no-store', signal: controller.signal })
           .then(function (response) {
-            if (response.status !== 200) {
-              button.classList.add('w3-disabled');
-              button.setAttribute('aria-disabled', 'true');
-              button.tabIndex = -1;
-              button.removeAttribute('href');
+            if (response.status === 200) {
+              button.href = button.dataset.url;
+              button.classList.remove('w3-disabled');
+              button.removeAttribute('aria-disabled');
+              button.removeAttribute('tabindex');
             }
 
             controller.abort();
           })
           .catch(function (error) {
-            console.warn('Unable to check link "' + button.href + '":', error);
+            console.warn('Unable to check link "' + button.dataset.url + '":', error);
           });
       });
     </script>
