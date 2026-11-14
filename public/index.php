@@ -100,6 +100,7 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 8px 16px;
     }
 
@@ -141,9 +142,6 @@ $footerLowLinks = $footerLow === null ? [] : pl_get($footerLow, 'links', []);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       }
 
-      .footer-low-content {
-        justify-content: center;
-      }
     }
     </style>
   </head>
